@@ -1,4 +1,4 @@
-<h1 style="padding: 0; margin: 20px 0 0"> CSR BEFORE THE WAR</h1>
+<h1 style="padding: 0; margin: 20px 0 0">BEFORE THE WAR</h1>
 <h3 style="padding: 0; margin: 0">Vojtěch Tmej</h3> 
 
 ### Disclaimer

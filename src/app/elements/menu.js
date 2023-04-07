@@ -3,17 +3,22 @@ import research from './../svg/search.svg'
 import MenuButton from "./MenuButton";
 import Button from "./BuyButton";
 import React from "react";
+import ResearchWindow from "./ResearchWindow";
+import items_json from "../ConfigFiles/items.json"
 
 function menu() {
     return (
         <div className={"p-4 flex flex-col gap-2"}>
-            <MenuButton img={shop_cart} text={"Nákup"} id={"buy_button"}></MenuButton>
+            <MenuButton img={shop_cart} text={"Nákup"} id={"buy_button"} buyMenu={true}></MenuButton>
             <div className={"flex flex-col gap-2"} id={"buy_menu"}>
-                <Button type={"Puška vz. 24"} id={"puska_vz24"} power={"1"}/>
-                <Button type={"Pistol vz. 27"} id={"pistol_vz27"} power={"4"}/>
-                <Button type={"ČS ježek"} id={"cs_jezek"} power={"6"}/>
+                {items_json.map((items_json) => (
+                    <Button type={items_json.name} id={items_json.id} power={items_json.power}/>
+                ))}
             </div>
-            <MenuButton img={research} text={"Výzkum"}></MenuButton>
+            <MenuButton img={research} text={"Výzkum"} id={"research_button"} buyMenu={false}></MenuButton>
+            <div id={"research_menu"}>
+                <ResearchWindow></ResearchWindow>
+            </div>
         </div>
     )
 }

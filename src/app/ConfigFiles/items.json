@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Puška vz. 24",
+    "id": "puska_vz24",
+    "price": 100,
+    "power": 1,
+    "requirements": {
+
+    }
+  },
+  {
+    "name": "Pistol vz. 27",
+    "id": "pistol_vz27",
+    "price": 150,
+    "power": 4,
+    "requirements": {
+
+    }
+  },
+  {
+    "name": "ČS ježek",
+    "id": "cs_jezek",
+    "price": 250,
+    "power": 6,
+    "requirements": {
+
+    }
+  },
+  {
+    "name": "Pěchotní srub",
+    "id": "pech_srub_v1",
+    "price": 500,
+    "power": 12,
+    "requirements": {
+
+    }
+  }
+]

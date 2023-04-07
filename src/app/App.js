@@ -13,12 +13,10 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <Test/>
-                <div className={"flex absolute top-0 right-0"}>
+                <div className={"flex absolute top-0 right-0 h-screen overflow-scroll"}>
                     <Menu></Menu>
 
                 </div>
-
-
             </header>
         </div>
     );

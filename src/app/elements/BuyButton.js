@@ -1,44 +1,27 @@
 import vals from '../func/def_vals.js'
 import genScript from "../func/genScript";
 
-function buyButton(props) {
+export default function buyButton(props) {
     console.log(vals[props.id + "_price"])
     console.log(props.id + "_price")
 
     function buy() {
-        if (Math.floor(vals[props.id + "_price"]) <= vals.i) {
-            vals.i = Math.floor(vals.i - vals[props.id + "_price"]);
-            switch (props.id) {
-                case "puska_vz24":
-                    vals.clickPower = vals.clickPower + +props.power;
-                    console.log("Síla: " + vals.clickPower)
-                    vals.puska_vz24 = vals.puska_vz24 + vals.amount_to_add;
-                    vals[props.id + "_price"] = Math.floor(vals[props.id + "_price"] + 0.10 * vals[props.id + "_price"])
-                    break
-                case "pistol_vz27":
-                    vals.clickPower = vals.clickPower + +props.power;
-                    vals.pistol_vz27 = vals.pistol_vz27 + vals.amount_to_add;
-                    vals[props.id + "_price"] = Math.floor(vals[props.id + "_price"] + 0.10 * vals[props.id + "_price"])
-                    break
-                case "cs_jezek":
-                    vals.clickPower = vals.clickPower + +props.power;
-                    vals.cs_jezek = vals.cs_jezek + vals.amount_to_add;
-                    vals[props.id + "_price"] = Math.floor(vals[props.id + "_price"] + 0.10 * vals[props.id + "_price"])
-                    break
-                default:
-                    console.log("Chyba, neexistuje takovej typ")
-                    break
-            }
+        if (Math.floor(vals[props.id + "_price"] * vals.amount_to_add) <= vals.i) {
+            vals.i = Math.floor(vals.i - Math.floor((vals[props.id + "_price"] + (vals.price_multiplayer * vals[props.id + "_price"])) * vals.amount_to_add));
+
+            vals.clickPower = vals.clickPower + +props.power * vals.amount_to_add;
+            vals[props.id] = vals[props.id] + vals.amount_to_add;
+            vals[props.id + "_price"] = Math.floor((vals[props.id + "_price"] + (vals.price_multiplayer * vals[props.id + "_price"])) * vals.amount_to_add)
         }
         genScript.updateCounter()
     }
 
     function test_of_this_code() {
         setInterval(function () {
-            if (vals[props.id + "_price"] > vals.i && !document.getElementById(props.id).classList.contains("opacity-30")) {
+            if (Math.floor((vals[props.id + "_price"] + (vals.price_multiplayer * vals[props.id + "_price"])) * vals.amount_to_add) > vals.i && !document.getElementById(props.id).classList.contains("opacity-30")) {
                 document.getElementById(props.id).classList.toggle("opacity-30")
-            } else if (vals[props.id + "_price"] <= vals.i && document.getElementById(props.id).classList.contains("opacity-30")){
-                document.getElementById(props.id).classList.toggle("opacity-30")
+            } else if (Math.floor((vals[props.id + "_price"] + (vals.price_multiplayer * vals[props.id + "_price"])) * vals.amount_to_add) <= vals.i && document.getElementById(props.id).classList.contains("opacity-30")) {
+                document.getElementById(props.id).classList.remove("opacity-30")
             }
         }, 100)
     }
@@ -64,12 +47,10 @@ function buyButton(props) {
                         />
                     </svg>
                 </div>
-                <div id={props.id + "_price_display"}>
-                    {vals[props.id + "_price"]}
+                <div >
+                    <span id={props.id + "_price_display"}>{vals[props.id + "_price"]}</span> <span> $</span>
                 </div>
             </div>
         </div>
     )
 }
-
-export default buyButton;

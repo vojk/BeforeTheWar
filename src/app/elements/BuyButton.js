@@ -6,8 +6,8 @@ export default function buyButton(props) {
     console.log(props.id + "_price")
 
     function buy() {
-        if (Math.floor(vals[props.id + "_price"] * vals.amount_to_add) <= vals.i) {
-            vals.i = Math.floor(vals.i - Math.floor((vals[props.id + "_price"] + (vals.price_multiplayer * vals[props.id + "_price"])) * vals.amount_to_add));
+        if ((vals.amount_to_add > 1 ? Math.floor(vals[props.id + "_price"] * vals.amount_to_add) : vals[props.id + "_price"]) <= vals.i) {
+            vals.i = Math.floor(vals.i - (vals.amount_to_add > 1 ? Math.floor(vals[props.id + "_price"] * vals.amount_to_add) : vals[props.id + "_price"]));
 
             vals.clickPower = vals.clickPower + +props.power * vals.amount_to_add;
             vals[props.id] = vals[props.id] + vals.amount_to_add;
@@ -18,9 +18,9 @@ export default function buyButton(props) {
 
     function test_of_this_code() {
         setInterval(function () {
-            if (Math.floor((vals[props.id + "_price"] + (vals.price_multiplayer * vals[props.id + "_price"])) * vals.amount_to_add) > vals.i && !document.getElementById(props.id).classList.contains("opacity-30")) {
+            if ((vals.amount_to_add > 1 ? Math.floor(vals[props.id + "_price"] * vals.amount_to_add) : vals[props.id + "_price"]) > vals.i && !document.getElementById(props.id).classList.contains("opacity-30")) {
                 document.getElementById(props.id).classList.toggle("opacity-30")
-            } else if (Math.floor((vals[props.id + "_price"] + (vals.price_multiplayer * vals[props.id + "_price"])) * vals.amount_to_add) <= vals.i && document.getElementById(props.id).classList.contains("opacity-30")) {
+            } else if ((vals.amount_to_add > 1 ? Math.floor(vals[props.id + "_price"] * vals.amount_to_add) : vals[props.id + "_price"]) <= vals.i && document.getElementById(props.id).classList.contains("opacity-30")) {
                 document.getElementById(props.id).classList.remove("opacity-30")
             }
         }, 100)

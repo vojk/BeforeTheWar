@@ -6,15 +6,17 @@ function counter() {
     genScript.updateCounter()
 }
 
-function Testovaci_element() {
+function InfoPanel() {
     return (
-        <div className={"p-4"}>
+        <div className={"p-4 flex flex-col items-center"}>
             <p id={"count_text"} className={"text-xl p-4"}>{vals.i}</p>
             <span onClick={counter}
-                  className={"cursor-pointer select-none bg-gradient-to-tl from-cyan-500/25 to-blue-500/25 p-2 pe-9 pl-9 rounded-xl bg-opacity-25 hover:drop-shadow-xl"}>Klikni na mě</span>
+                  className={"flex cursor-pointer select-none bg-gradient-to-tl from-cyan-500/25 to-blue-500/25 p-4 rounded-xl bg-opacity-25 border-blue-950 border aspect-square items-center hover:drop-shadow-xl w-fit h-fit"}>
+                CSK
+            </span>
             <p className={"text-xl mt-2.5"} id={"cps_text"}>CPS {Math.floor(vals.clickPower / 2)}</p>
         </div>
     )
 }
 
-export default Testovaci_element
+export default InfoPanel
